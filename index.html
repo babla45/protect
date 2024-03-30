@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Example project of database+html</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="function.js"></script>
+</head>
+
+<body id="body">
+
+<h1 class="welcome-message">Welcome!</h1>
+
+<!-- -------form----- -->
+<form>
+<b class="username">Username:</b><br><br>
+<!-- <input class="usernameField" type="text" placeholder="Enter Your name" required><br> -->
+<textarea class="usernameField"   cols="47" rows="3" placeholder="Enter Your name"></textarea>
+<br>
+
+<br><b class="password">Password:</b><br><br>
+<!-- <input class="passwordField" type="password" placeholder="Enter Your Password" required><br> -->
+<textarea class="passwordField"   cols="47" rows="3" placeholder="Enter Your Password"></textarea>
+
+<br><b>Pin</b>
+<br><input class="pin" type="number" min="0" max="9999">
+
+
+<!-- <br><button type="submit" id="lb" onclick="loginButton()" class="loginButton">Log In</button> -->
+<br><input type="button" class="encButton" name="encButton" onclick="EncButton()"  value="Encrypt">
+<input type="button" class="encButton" name="decButton" onclick="DecButton()" value="Decrypt">
+
+
+<br><br>
+
+<textarea  id="message" cols="50" rows="10" readonly></textarea>
+
+</form>
+</body>
+</html>

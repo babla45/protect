@@ -1,0 +1,29 @@
+<html>
+
+<head>
+    <title>hello babla islam</title>
+</head>
+
+<body bgcolor="purple">
+    <p>hello there!</p><br>
+
+    <form action="https://www.youtube.com" method="POST">
+    <b>hello babla,enter your name here: </b><input type="text"><br>
+    <input type="button" value="submit" name="babla">
+
+    </form>
+
+    
+</body>
+
+<?php
+
+        $nam=$_POST['babla'];
+        echo $nam;
+
+
+?>
+
+
+
+</html>

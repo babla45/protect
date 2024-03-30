@@ -1,0 +1,112 @@
+
+body{
+    text-align: center;
+    /* background-color: rgba(0, 0, 0, 0); */
+}
+
+
+.welcome-message{
+    color: rgb(6, 6, 89);
+    margin-bottom: 70px;
+    font-size: 50px;
+
+}    
+.welcome-message:hover{
+    color: rgba(56, 53, 252, 0.913);
+    margin-bottom: 70px;
+    font-size: 50px;
+
+}    
+
+.username{
+    background-color: pink;
+    /* color: red; */
+    padding: 10px;
+    /* margin-bottom: 30px; */
+    border-radius: 45px;
+}  
+.username:hover{
+    background-color: rgb(0, 0, 0);
+    font-size: 23px;
+    color: red;
+    padding: 10px;
+    border-radius: 45px;
+}  
+
+.password{
+    background-color: pink;
+    /* color: pink; */
+    padding: 10px;
+    border-radius: 50px;
+}
+.password:hover{
+    background-color: rgb(0, 0, 0);
+    font-size: 23px;
+    color: red;
+    padding: 10px;
+    border-radius: 45px;
+}      
+
+
+.usernameField{
+    /* background-color: rgb(0, 1, 0); */
+    /* color: rgb(72, 14, 14); */
+    /* height: 35px;
+    width: 350px; */
+    text-align: center;
+    border-radius: 50px;
+    border-color: rgb(141, 10, 139);
+    border-width: 4px;
+}    
+.passwordField{
+    /* background-color: rgb(78, 148, 229); */
+    /* height: 35px;
+    width: 350px; */
+    text-align: center;
+    border-radius: 50px;
+    border-width: 4px;
+    border-color: rgb(141, 10, 139);
+}    
+
+.pin{
+    /* background-color: rgb(78, 148, 229); */
+    height: 35px;
+    width: 130px;
+    text-align: center;
+    border-radius: 50px;
+    border-width: 4px;
+    border-color: rgb(141, 10, 139);
+}    
+
+
+.encButton{
+    color:rgb(35, 27, 146);
+    font-style:bold;
+    margin: 25px;
+    font-size: 30px;
+    border-radius: 50px;
+    border-width: 4px;
+    height: 45px;
+    width: 130px;
+
+}
+
+.encButton:hover{
+    color:rgb(0, 0, 0);
+    font-style: bold;
+    font-size: 30px;
+    border-radius: 50px;
+    height: 45px;
+    width: 135px;
+
+}
+
+#message{
+    display: none;
+    margin: auto;
+    border-width: 5px;
+    border-color: green;
+    border-radius: 43px;
+    background: #000;
+    color: wheat;
+}
