@@ -1,7 +1,7 @@
 
 body{
     text-align: center;
-    /* background-color: rgba(0, 0, 0, 0); */
+    background-color: rgb(160, 138, 138);
 }
 
 
@@ -49,19 +49,21 @@ body{
 
 
 .usernameField{
-    /* background-color: rgb(0, 1, 0); */
-    /* color: rgb(72, 14, 14); */
+    /* color: rgb(255, 255, 255); */
     /* height: 35px;
     width: 350px; */
+    /* background-color: rgba(6, 6, 6, 0.294); */
+
     text-align: center;
     border-radius: 50px;
     border-color: rgb(141, 10, 139);
     border-width: 4px;
 }    
 .passwordField{
-    /* background-color: rgb(78, 148, 229); */
     /* height: 35px;
     width: 350px; */
+    /* background-color: rgba(6, 6, 6, 0.294); */
+
     text-align: center;
     border-radius: 50px;
     border-width: 4px;
@@ -69,7 +71,7 @@ body{
 }    
 
 .pin{
-    /* background-color: rgb(78, 148, 229); */
+    /* background-color: rgba(6, 6, 6, 0.294); */
     height: 35px;
     width: 130px;
     text-align: center;
@@ -85,6 +87,7 @@ body{
     margin: 25px;
     font-size: 30px;
     border-radius: 50px;
+    
     border-width: 4px;
     height: 45px;
     width: 130px;

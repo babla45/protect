@@ -13,18 +13,19 @@
 <h1 class="welcome-message">Welcome!</h1>
 
 <!-- -------form----- -->
-<form>
 <b class="username">Username:</b><br><br>
 <!-- <input class="usernameField" type="text" placeholder="Enter Your name" required><br> -->
-<textarea class="usernameField"   cols="47" rows="3" placeholder="Enter Your name"></textarea>
+<textarea class="usernameField"   cols="47" rows="3" placeholder="Enter Your Name"></textarea>
 <br>
 
 <br><b class="password">Password:</b><br><br>
 <!-- <input class="passwordField" type="password" placeholder="Enter Your Password" required><br> -->
 <textarea class="passwordField"   cols="47" rows="3" placeholder="Enter Your Password"></textarea>
 
+
+<!-- -----pin--- -->
 <br><b>Pin</b>
-<br><input class="pin" type="number" min="0" max="9999">
+<br><input class="pin" type="number" maxlength="5" placeholder="0 - 5 digit pin">
 
 
 <!-- <br><button type="submit" id="lb" onclick="loginButton()" class="loginButton">Log In</button> -->
@@ -36,6 +37,24 @@
 
 <textarea  id="message" cols="50" rows="10" readonly></textarea>
 
-</form>
+
+<script>
+
+    document.querySelectorAll('input[type="number"]').forEach(input=>{
+    
+        input.oninput=()=>{
+    
+            if(input.value.length > input.maxLength)
+            {
+                input.value=input.value.slice(0,input.maxLength);
+            }
+    
+        };
+    });
+    
+</script>
+
+
+
 </body>
 </html>

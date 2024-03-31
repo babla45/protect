@@ -1,9 +1,13 @@
 
+var pin;
+
 function EncButton() {
     
     var messageBox=document.getElementById("message");
     var userName = document.querySelector(".usernameField").value;
     var password  = document.querySelector(".passwordField").value;
+    pin=document.querySelector(".pin").value;
+    if(pin==0) pin=55;
     
     if(userName=="") { userName="not entered"; }
     if(password=="") {  password="not entered"; }
@@ -19,9 +23,9 @@ function EncButton() {
         messageBox.style.textAlign="center";
         messageBox.innerHTML="Encrypted username:\n"+enc_username+"\n\nEncrypted password:\n"+enc_message;
 
-        document.getElementById("body").style.background="black";
-        document.querySelector(".username").style.color="red";
-        document.querySelector(".password").style.color="red";
+        document.getElementById("body").style.background="pink";
+        // document.querySelector(".username").style.color="red";
+        // document.querySelector(".password").style.color="red";
         document.querySelector(".welcome-message").style.color="blue";
         
         setTimeout(function() {
@@ -46,7 +50,7 @@ function EncButton() {
             messageBox.style.display="none";
             document.getElementById("body").style.background="white";
             
-        },46500);
+        },96500);
     }
     
 }
@@ -56,6 +60,9 @@ function DecButton() {
     var messageBox=document.getElementById("message");
     var userName = document.querySelector(".usernameField").value;
     var password  = document.querySelector(".passwordField").value;
+
+    pin=document.querySelector(".pin").value;
+    if(pin==0) pin=55;
     
     if(userName=="") { userName="not entered"; }
     if(password=="") {  password="not entered"; }
@@ -81,7 +88,7 @@ function DecButton() {
             messageBox.style.display="none";
             document.getElementById("body").style.background="white";
             
-        },55500);
+        },96500);
     }
     
     else
@@ -98,7 +105,7 @@ function DecButton() {
             messageBox.style.display="none";
             document.getElementById("body").style.background="white";
             
-        },46500);
+        },96500);
     }
     
 }
@@ -109,7 +116,7 @@ function enc(str) {
 
     let final_result='';
     let s=str.split('\n');
-    const len=s.length,pass=55;
+    const len=s.length,pass=pin;
 
     for(let i=0; i<len; i++)
     {
@@ -134,7 +141,7 @@ function dec(str) {
 
     let final_result='';
     let s=str.split('\n');
-    const len=s.length,pass=55;
+    const len=s.length,pass=pin;
 
     for(let i=0; i<len; i++)
     {
