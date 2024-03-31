@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prevent Form Refresh</title>
+    <script>
+        window.onload = function() {
+            document.getElementById("myForm").onsubmit = function(event) {
+                // Prevent the default form submission behavior
+                event.preventDefault();
+                
+                // Your custom code to handle form submission
+                // For example, you can send data via AJAX
+                // or perform validation before submission
+                
+                // Here's a simple example of submitting the form via AJAX
+                
+                
+                
+                /*var formData = new FormData(this);
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "your-server-endpoint-url", true);
+                xhr.send(formData);*/
+                
+                
+                
+                // Optionally, you can perform additional actions after submission
+            };
+        };
+    </script>
+</head>
+<body>
+    <form id="myForm" action="" method="post">
+        <!-- Your input fields go here -->
+        <input type="text" name="input1"><br><br>
+        <input type="text" name="input2"><br><br>
+        
+        <!-- Your submit buttons -->
+        <input type="submit" onClick="button1()" value="Submit 1">
+        <input type="submit" onClick="button2()" value="Submit 2">
+    </form>
+    
+    
+    
+    <script>
+    
+    function button1()
+    {
+    alert("button 1 is pressed");
+    }
+    function button2()
+    {
+    alert("button 2 is pressed");
+    }
+    
+    </script>
+</body>
+
+</html>

