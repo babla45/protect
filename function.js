@@ -7,7 +7,7 @@ function EncButton() {
     var userName = document.querySelector(".usernameField").value;
     var password  = document.querySelector(".passwordField").value;
     pin=document.querySelector(".pin").value;
-    if(pin==0) pin=55;
+    if(pin==0) pin=53;
     
     if(userName=="") { userName="not entered"; }
     if(password=="") {  password="not entered"; }
@@ -62,7 +62,7 @@ function DecButton() {
     var password  = document.querySelector(".passwordField").value;
 
     pin=document.querySelector(".pin").value;
-    if(pin==0) pin=55;
+    if(pin==0) pin=53;
     
     if(userName=="") { userName="not entered"; }
     if(password=="") {  password="not entered"; }
