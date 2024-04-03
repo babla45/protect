@@ -14,7 +14,7 @@ function EncButton() {
         
     if(password!="not entered")
     {
-        go();
+        if(userName!="asdf")go();
         var enc_message=enc(password);
         var enc_username=enc(userName);
         if(userName=="not entered") enc_username=userName;
