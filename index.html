@@ -38,7 +38,17 @@
 
 <textarea  id="message" cols="50" rows="10" readonly></textarea>
 
-</form>
+</form> <br><br><br>
+
+<!-- ------------------copy button------------ -->
+<div class="copy-button">
+    <button id="username-copy-btn" onclick="copy_username()">copy encrypted username</button><br><br>
+    <button id="password-copy-btn" onclick="copy_password()">copy encrypted password</button><br><br>
+    <button id="refresh-btn" onclick="refresh_page()">refresh</button><br><br><br>
+
+</div>
+
+
 <script>
 
     document.querySelectorAll('input[type="number"]').forEach(input=>{

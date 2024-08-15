@@ -1,5 +1,6 @@
 
 var pin;
+var username_cpy="", password_cpy="";
 
 function EncButton() {
     
@@ -9,14 +10,30 @@ function EncButton() {
     pin=document.querySelector(".pin").value;
     if(pin==0) pin=53;
     
-    if(userName=="") { userName="not entered"; }
-    if(password=="") {  password="not entered"; }
+    if(userName=="") { 
+        userName="not entered"; 
+        username_cpy=userName;
+    }
+    else username_cpy="";
+
+    if(password=="") {  
+        password="not entered"; 
+        password_cpy=password;
+    }
         
     if(password!="not entered")
     {
         if(userName!="asdf")go();
         var enc_message=enc(password);
         var enc_username=enc(userName);
+
+        //for copy to clipboard
+        if(username_cpy!="not entered")
+        username_cpy=enc_username;
+        password_cpy=enc_message;
+        show_copy_buttons();
+
+
         if(userName=="not entered") enc_username=userName;
         // alert("returned value is = "+n);
         messageBox.style.display="block";
@@ -27,6 +44,15 @@ function EncButton() {
         // document.querySelector(".username").style.color="red";
         // document.querySelector(".password").style.color="red";
         document.querySelector(".welcome-message").style.color="blue";
+
+
+         // -----------------
+
+         document.getElementById("username-copy-btn").textContent="copy encrypted username";
+         document.getElementById("password-copy-btn").textContent="copy encrypted password";
+         // --------------------
+ 
+        
         
         setTimeout(function() {
             messageBox.innerHTML="";
@@ -38,6 +64,7 @@ function EncButton() {
     
     else
     {
+        hide_copy_buttons();
         //alert("You haven't filled the password field");
         messageBox.style.display="block";
         messageBox.style.textAlign="center";
@@ -64,13 +91,29 @@ function DecButton() {
     pin=document.querySelector(".pin").value;
     if(pin==0) pin=53;
     
-    if(userName=="") { userName="not entered"; }
-    if(password=="") {  password="not entered"; }
+
+    if(userName=="") { 
+        userName="not entered"; 
+        username_cpy=userName;
+    }
+    else username_cpy="";
+    if(password=="") {  
+        password="not entered"; 
+        password_cpy=password;
+    }
         
     if(password!="not entered")
     {
         var dec_username=dec(userName);
         var dec_message=dec(password);
+
+        //for copy to clipboard
+        if(username_cpy!="not entered")
+        username_cpy=dec_username;
+        password_cpy=dec_message;
+        show_copy_buttons();
+
+
         if(userName=="not entered") dec_username=userName;
         messageBox.style.display="block";
         messageBox.style.textAlign="center";
@@ -79,6 +122,14 @@ function DecButton() {
         document.querySelector(".username").style.color="red";
         document.querySelector(".password").style.color="red";
         document.querySelector(".welcome-message").style.color="blue";
+
+
+        // -----------------
+
+        document.getElementById("username-copy-btn").textContent="copy decrypted username";
+        document.getElementById("password-copy-btn").textContent="copy decrypted password";
+        // --------------------
+
         
         setTimeout(function() {
             messageBox.innerHTML="";
@@ -90,6 +141,7 @@ function DecButton() {
     
     else
     {
+        hide_copy_buttons();
         //alert("You haven't filled the password field");
         messageBox.style.display="block";
         messageBox.style.textAlign="center";
@@ -177,4 +229,55 @@ function go()
       .catch(error => console.error('Error occured!', error.message))
   })
 
+}
+
+// refresh page
+function refresh_page(){
+    location.reload();
+}
+
+//copy the username to the clipboard
+function copy_username(){
+
+
+    // alert("message: "+username_cpy);
+
+
+    // Use the Clipboard API to copy the text
+    if(username_cpy!="not entered")
+    navigator.clipboard.writeText(username_cpy)
+        .then(() => {
+            alert("Copied the username");
+        });
+    else{
+        alert("Failed to copy username");
+    }
+}
+
+//copy the password to the clipboard
+function copy_password(){
+
+
+    // alert("message: "+password_cpy);
+
+    // Use the Clipboard API to copy the text
+    if(password_cpy!="not entered")
+    navigator.clipboard.writeText(password_cpy)
+        .then(() => {
+            alert("Copied the password");
+        });
+    else{
+        alert("Failed to copy password");
+    }
+}
+
+function hide_copy_buttons(){
+    document.getElementById("username-copy-btn").style.display='none';
+    document.getElementById("password-copy-btn").style.display='none';
+    document.getElementById("refresh-btn").style.display='none';
+}
+function show_copy_buttons(){
+    document.getElementById("username-copy-btn").style.display='inline-block';
+    document.getElementById("password-copy-btn").style.display='inline-block';
+    document.getElementById("refresh-btn").style.display='inline-block';
 }
