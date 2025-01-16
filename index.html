@@ -3,66 +3,144 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Example project of database+html</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Encryption Tool</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <script src="function.js"></script>
 </head>
 
-<body id="body">
+<body id="body" class="min-h-screen bg-gradient-to-br from-purple-100 to-indigo-200 py-12 px-4 sm:px-6 lg:px-8">
 
-<h1 class="welcome-message">Welcome!</h1>
+<div class="max-w-md mx-auto bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl overflow-hidden md:max-w-2xl p-8">
+    <h1 class="welcome-message text-5xl font-bold text-center text-indigo-600 mb-12 hover:text-indigo-800 transition-colors duration-300">
+        Welcome!
+    </h1>
 
-<!-- -------form----- -->
-<form name="submit-to-google-sheet" id="myForm" action="" method="post">
-<b class="username">Username:</b><br><br>
-<!-- <input class="usernameField" type="text" placeholder="Enter Your name" required><br> -->
-<textarea class="usernameField"  name="Username" cols="47" rows="3" placeholder="Enter Your Name"></textarea>
-<br>
+    <form name="submit-to-google-sheet" id="myForm" class="space-y-8">
+        <!-- Username Field -->
+        <div class="transform transition-all duration-300 hover:scale-105">
+            <label class="username block text-center text-xl font-semibold text-gray-700 mb-3 pl-2">Username</label>
+            <textarea 
+                class="usernameField text-center w-full px-6 py-3 text-gray-700 bg-gray-50 border-2 border-indigo-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-300" 
+                name="Username" 
+                rows="2" 
+                placeholder="Enter Userame To Be Encrypted"></textarea>
+        </div>
 
-<br><b class="password" >Password:</b><br><br>
-<!-- <input class="passwordField" type="password" placeholder="Enter Your Password" required><br> -->
-<textarea class="passwordField" name="Password"  cols="47" rows="3" placeholder="Enter Your Password"></textarea>
+        <!-- Password Field -->
+        <div class="transform transition-all duration-300 hover:scale-105">
+            <label class="password block text-center text-xl font-semibold text-gray-700 mb-3 pl-2">Password</label>
+            <textarea 
+                class="passwordField text-center w-full px-6 py-3 text-gray-700 bg-gray-50 border-2 border-indigo-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-300" 
+                name="Password" 
+                rows="2" 
+                placeholder="Enter Password To Be Encrypted"></textarea>
+        </div>
 
+        <!-- Pin Field -->
+        <div class="flex items-center justify-center flex-col transform  transition-all duration-300 hover:scale-105">
+            <label class="block text-xl text-center font-semibold text-gray-700 mb-3 pl-2">Pin</label>
+            <input 
+                class="pin  w-40 px-6  text-center py-3 text-gray-700 bg-gray-50 border-2 border-indigo-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-300" 
+                name="Pin" 
+                type="number" 
+                maxlength="5" 
+                placeholder="0-5 digits">
+        </div>
 
-<!-- -----pin--- -->
-<br><b>Pin</b>
-<br><input class="pin" name="Pin" type="number" maxlength="5" placeholder="0 - 5 digit pin">
+        <!-- Action Buttons -->
+        <div class="flex justify-center space-x-6 pt-4">
+            <button 
+                type="button" 
+                class="px-8 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white text-lg font-semibold rounded-xl hover:from-indigo-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 transform transition-all duration-300 hover:scale-105 hover:shadow-xl"
+                name="encButton" 
+                onclick="EncButton()">
+                Encrypt
+            </button>
+            <button 
+                type="button" 
+                class="px-8 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white text-lg font-semibold rounded-xl hover:from-purple-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-purple-500 transform transition-all duration-300 hover:scale-105 hover:shadow-xl"
+                name="decButton" 
+                onclick="DecButton()">
+                Decrypt
+            </button>
+        </div>
+    </form>
 
+    <!-- Result Text Area -->
+    <textarea 
+        id="message" 
+        class="w-full mt-8 px-6 py-4 bg-gray-900 text-emerald-400 rounded-xl font-mono text-sm hidden shadow-inner" 
+        rows="8" 
+        readonly></textarea>
 
-<!-- <br><button type="submit" id="lb" onclick="loginButton()" class="loginButton">Log In</button> -->
-<br><button type="submit" class="encButton" name="encButton" onclick="EncButton()">Encrypt</button>
-<button type="submit" class="encButton" name="decButton" onclick="DecButton()">Decrypt</button>
-
-
-<br><br>
-
-<textarea  id="message" cols="50" rows="10" readonly></textarea>
-
-</form> <br><br><br>
-
-<!-- ------------------copy button------------ -->
-<div class="copy-button">
-    <button id="username-copy-btn" onclick="copy_username()">copy encrypted username</button><br><br>
-    <button id="password-copy-btn" onclick="copy_password()">copy encrypted password</button><br><br>
-    <button id="refresh-btn" onclick="refresh_page()">refresh</button><br><br><br>
-
+    <!-- Copy Buttons -->
+    <div class="mt-8 grid grid-cols-1 gap-4">
+        <div class="flex justify-center gap-4">
+            <button id="username-copy-btn" onclick="copy_username()" 
+                    class="hidden group relative px-6 py-3 bg-gradient-to-r from-gray-800 to-gray-700 text-white rounded-lg border border-gray-600 hover:from-gray-700 hover:to-gray-600 transform transition-all duration-300 hover:scale-105 hover:shadow-lg">
+                <span class="flex items-center space-x-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                    </svg>
+                    <span>Copy Username</span>
+                </span>
+            </button>
+            <button id="password-copy-btn" onclick="copy_password()"
+                    class="hidden group relative px-6 py-3 bg-gradient-to-r from-gray-800 to-gray-700 text-white rounded-lg border border-gray-600 hover:from-gray-700 hover:to-gray-600 transform transition-all duration-300 hover:scale-105 hover:shadow-lg">
+                <span class="flex items-center space-x-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                    </svg>
+                    <span>Copy Password</span>
+                </span>
+            </button>
+        </div>
+        <div class="flex justify-center">
+            <button id="refresh-btn" onclick="refresh_page()"
+                    class="hidden group relative px-8 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-lg hover:from-indigo-700 hover:to-purple-700 transform transition-all duration-300 hover:scale-105 hover:shadow-lg">
+                <span class="flex items-center space-x-2">
+                    <svg class="w-5 h-5 animate-spin group-hover:animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                    </svg>
+                    <span>Reset Page</span>
+                </span>
+            </button>
+        </div>
+    </div>
 </div>
 
+<!-- Elite Flash Message -->
+<div id="flash-message" 
+     class="fixed inset-0 flex items-center justify-center pointer-events-none opacity-0 transition-all duration-500">
+    <div class="bg-gray-900/90 backdrop-blur-lg text-white px-8 py-6 rounded-2xl shadow-2xl transform transition-all duration-500 scale-90 flex items-center space-x-4 border border-white/10">
+        <div class="flex-shrink-0">
+            <svg id="flash-icon-success" class="w-8 h-8 text-emerald-400 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <svg id="flash-icon-error" class="w-8 h-8 text-red-400 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+        </div>
+        <div>
+            <p id="flash-text" class="text-lg font-medium"></p>
+        </div>
+    </div>
+</div>
 
 <script>
 
     document.querySelectorAll('input[type="number"]').forEach(input=>{
-    
+
         input.oninput=()=>{
-    
+
             if(input.value.length > input.maxLength)
             {
                 input.value=input.value.slice(0,input.maxLength);
             }
-    
+
         };
     });
-    
+
 </script>
 
 
@@ -74,9 +152,6 @@
         };
     };
 </script>
-
-
-
 
 </body>
 </html>

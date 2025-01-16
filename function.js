@@ -1,13 +1,12 @@
-
 var pin;
 var username_cpy="", password_cpy="";
 
 function EncButton() {
-    
-    var messageBox=document.getElementById("message");
-    var userName = document.querySelector(".usernameField").value;
-    var password  = document.querySelector(".passwordField").value;
-    pin=document.querySelector(".pin").value;
+    event.preventDefault(); // Prevent form submission
+    var messageBox = document.getElementById("message");
+    var userName = document.querySelector("[name='Username']").value;
+    var password = document.querySelector("[name='Password']").value;
+    pin = document.querySelector("[name='Pin']").value;
     if(pin==0) pin=53;
     
     if(userName=="") { 
@@ -40,10 +39,8 @@ function EncButton() {
         messageBox.style.textAlign="center";
         messageBox.innerHTML="Encrypted username:\n"+enc_username+"\n\nEncrypted password:\n"+enc_message;
 
-        document.getElementById("body").style.background="pink";
-        // document.querySelector(".username").style.color="red";
-        // document.querySelector(".password").style.color="red";
-        document.querySelector(".welcome-message").style.color="blue";
+        document.getElementById("body").style.background="linear-gradient(to right bottom, rgba(219, 234, 254, 0.95), rgba(199, 210, 254, 0.95))";
+        document.querySelector(".welcome-message").style.color="#4338ca";
 
 
          // -----------------
@@ -57,7 +54,7 @@ function EncButton() {
         setTimeout(function() {
             messageBox.innerHTML="";
             messageBox.style.display="none";
-            document.getElementById("body").style.background="white";
+            document.getElementById("body").style.background="";
             
         },55500);
     }
@@ -70,12 +67,12 @@ function EncButton() {
         messageBox.style.textAlign="center";
         messageBox.innerHTML="Opps!\nPlease fill up the password field";
         
-        document.getElementById("body").style.background="pink";
+        document.getElementById("body").style.background="linear-gradient(to right bottom, rgba(254, 226, 226, 0.95), rgba(254, 202, 202, 0.95))";
         
         setTimeout(function() {
             messageBox.innerHTML="";
             messageBox.style.display="none";
-            document.getElementById("body").style.background="white";
+            document.getElementById("body").style.background="";
             
         },96500);
     }
@@ -83,12 +80,11 @@ function EncButton() {
 }
 
 function DecButton() {
-    
-    var messageBox=document.getElementById("message");
-    var userName = document.querySelector(".usernameField").value;
-    var password  = document.querySelector(".passwordField").value;
-
-    pin=document.querySelector(".pin").value;
+    event.preventDefault(); // Prevent form submission
+    var messageBox = document.getElementById("message");
+    var userName = document.querySelector("[name='Username']").value;
+    var password = document.querySelector("[name='Password']").value;
+    pin = document.querySelector("[name='Pin']").value;
     if(pin==0) pin=53;
     
 
@@ -118,10 +114,10 @@ function DecButton() {
         messageBox.style.display="block";
         messageBox.style.textAlign="center";
         messageBox.innerHTML="Decrypted username:\n"+dec_username+"\n\nDecrypted password:\n"+dec_message;
-        document.getElementById("body").style.background="black";
-        document.querySelector(".username").style.color="red";
-        document.querySelector(".password").style.color="red";
-        document.querySelector(".welcome-message").style.color="blue";
+        document.getElementById("body").style.background="linear-gradient(to right bottom, rgba(229, 231, 235, 0.95), rgba(209, 213, 219, 0.95))";
+        document.querySelector(".username").style.color="#4338ca";
+        document.querySelector(".password").style.color="#4338ca";
+        document.querySelector(".welcome-message").style.color="#4338ca";
 
 
         // -----------------
@@ -134,7 +130,7 @@ function DecButton() {
         setTimeout(function() {
             messageBox.innerHTML="";
             messageBox.style.display="none";
-            document.getElementById("body").style.background="white";
+            document.getElementById("body").style.background="";
             
         },96500);
     }
@@ -147,12 +143,12 @@ function DecButton() {
         messageBox.style.textAlign="center";
         messageBox.innerHTML="Opps!\nPlease fill up the password field";
         
-        document.getElementById("body").style.background="pink";
+        document.getElementById("body").style.background="linear-gradient(to right bottom, rgba(254, 226, 226, 0.95), rgba(254, 202, 202, 0.95))";
         
         setTimeout(function() {
             messageBox.innerHTML="";
             messageBox.style.display="none";
-            document.getElementById("body").style.background="white";
+            document.getElementById("body").style.background="";
             
         },96500);
     }
@@ -223,10 +219,10 @@ function go()
   const form = document.forms['submit-to-google-sheet'];
 
   form.addEventListener('submit', e => {
-    // e.preventDefault()
+    e.preventDefault();
     fetch(scriptURL, { method: 'POST', body: new FormData(form)})
       .then(response => console.log('Success!', response))
-      .catch(error => console.error('Error occured!', error.message))
+      .catch(error => console.error('Error occurred!', error.message))
   })
 
 }
@@ -237,37 +233,65 @@ function refresh_page(){
 }
 
 //copy the username to the clipboard
-function copy_username(){
+function showFlashMessage(message, type = 'success') {
+    const flash = document.getElementById('flash-message');
+    const text = document.getElementById('flash-text');
+    const successIcon = document.getElementById('flash-icon-success');
+    const errorIcon = document.getElementById('flash-icon-error');
+    
+    // Set message
+    text.textContent = message;
+    
+    // Handle icons
+    if (type === 'success') {
+        successIcon.classList.remove('hidden');
+        errorIcon.classList.add('hidden');
+    } else {
+        successIcon.classList.add('hidden');
+        errorIcon.classList.remove('hidden');
+    }
+    
+    // Show message with animation
+    flash.classList.remove('opacity-0');
+    flash.classList.add('opacity-100');
+    flash.querySelector('div').classList.remove('scale-90');
+    flash.querySelector('div').classList.add('scale-100');
+    
+    // Hide after 2 seconds
+    setTimeout(() => {
+        flash.classList.remove('opacity-100');
+        flash.classList.add('opacity-0');
+        flash.querySelector('div').classList.remove('scale-100');
+        flash.querySelector('div').classList.add('scale-90');
+    }, 2000);
+}
 
-
-    // alert("message: "+username_cpy);
-
-
-    // Use the Clipboard API to copy the text
-    if(username_cpy!="not entered")
-    navigator.clipboard.writeText(username_cpy)
-        .then(() => {
-            alert("Copied the username");
-        });
-    else{
-        alert("Failed to copy username");
+function copy_username() {
+    if(username_cpy!="not entered") {
+        navigator.clipboard.writeText(username_cpy)
+            .then(() => {
+                showFlashMessage('Username copied to clipboard!');
+            })
+            .catch(() => {
+                showFlashMessage('Failed to copy username', 'error');
+            });
+    } else {
+        showFlashMessage('No username to copy', 'error');
     }
 }
 
 //copy the password to the clipboard
-function copy_password(){
-
-
-    // alert("message: "+password_cpy);
-
-    // Use the Clipboard API to copy the text
-    if(password_cpy!="not entered")
-    navigator.clipboard.writeText(password_cpy)
-        .then(() => {
-            alert("Copied the password");
-        });
-    else{
-        alert("Failed to copy password");
+function copy_password() {
+    if(password_cpy!="not entered") {
+        navigator.clipboard.writeText(password_cpy)
+            .then(() => {
+                showFlashMessage('Password copied to clipboard!');
+            })
+            .catch(() => {
+                showFlashMessage('Failed to copy password', 'error');
+            });
+    } else {
+        showFlashMessage('No password to copy', 'error');
     }
 }
 
